@@ -2,20 +2,18 @@ import streamlit as st
 import pandas as pd
 import duckdb
 import plotly.express as px
-import seaborn as sns
-
 
 # Titre de la page
 st.title("Analyse de la base de données")
 st.divider()
 
 options = ["title.ratings", "title.akas", "title.basics", "title.crew"]
-selection = st.pills("Les datas sets : ", options, selection_mode='single' or None)
+selection = st.pills("Les datas sets : ", options, selection_mode='single')
 
 if "title.ratings" in selection:
     # Charger le fichier avec DuckDB
     st.markdown("### Analyse de title.Ratings")
-    df_title_ratings = duckdb.query("SELECT * FROM 'C:/Users/cohen/Desktop/Damien/Data Analyst/Projet 2/source/title.ratings.tsv'").to_df()
+    df_title_ratings = duckdb.query("SELECT * FROM '/data/title.ratings.tsv'").to_df()
     st.write("Aperçu des données:", df_title_ratings.head(5))
 
     # Graphique 1 : Répartition des évaluations moyennes
