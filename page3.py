@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import duckdb
 import plotly.express as px
+import seaborn as sns
+
 
 # Titre de la page
 st.title("Analyse de la base de données")

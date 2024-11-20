@@ -1,4 +1,6 @@
 import streamlit as st
+import seaborn as sns
+
 
 st.title("L'équipe projet")
 st.write("L'équipe")
@@ -22,4 +24,3 @@ with col3:
 with col4:
     st.header("Fatma")
     st.image("C:/Users/cohen/Desktop/Damien/Data Analyst/Projet 2/Fatma.png")
-
