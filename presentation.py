@@ -8,6 +8,7 @@ pg = st.navigation([
         st.Page("page2.py", title="Le projet", icon="🔥"),
         st.Page("page1.py", title="L'équipe projet", icon="🤹‍♀️"),
         st.Page("page3.py", title="Analyse de la base de données", icon="📊")
+        st.Page("page4.py", title="Recommandation", icon="🎬")
 
 ])
 
