@@ -13,7 +13,7 @@ st.set_page_config(
 )
 
 # Clé API
-api_key = "192f96229b83ef4a1fa6add55531870f"
+api_key =st.secrets['API_KEY']
 
 # Récupérer la liste des films populaires
 def get_movies():
@@ -70,7 +70,7 @@ def get_actors(data_crew):
     actors = []
     cast_list = data_crew.get("cast", [])
     if cast_list:
-        for cast in cast_list[:5]:  # Limiter à 5 acteurs principaux
+        for cast in cast_list[:10]:  # Limiter à 5 acteurs principaux
             actor = {}
             actor["name"] = cast.get("name", None)
             actor["character"] = cast.get("character", None)
@@ -86,7 +86,7 @@ def get_avis(movie_id):
     for avis in data.get("results", []):
         avis_details = {
             "author": avis.get("author"),
-            "rating": avis.get("author_details"),
+            "rating": avis.get("rating"),
             "content": avis.get("content"),
         }
         avis_list.append(avis_details)
@@ -179,7 +179,7 @@ with col3:  # Résumé et détails techniques
     st.markdown("#### 📝 Résumé")
     st.write(movie_data.get("overview"))
 
-    st.markdown("#### 📸 Casting principal :") #Affichage des 5 acteurs principaux
+    st.markdown("#### 📸 Têtes d'affiche :") #Affichage des 5 acteurs principaux
     actors = get_actors(movie_crew)
     col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
     with col1:
@@ -222,6 +222,48 @@ with col3:  # Résumé et détails techniques
         <div class="actor-role">{actors[4]['character']}</div>
     </div>
     """, unsafe_allow_html=True)
+    with st.expander("Plus d'acteurs", icon=":material/add:"):
+        col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
+        with col1:
+            st.markdown(f"""
+        <div class="actor-container">
+            <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[5]['profile_path']}" alt="{actors[0]['name']}">
+            <div class="actor-name">{actors[5]['name']}</div>
+            <div class="actor-role">{actors[5]['character']}</div>
+        </div>
+        """, unsafe_allow_html=True)
+        with col2:
+            st.markdown(f"""
+        <div class="actor-container">
+            <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[6]['profile_path']}" alt="{actors[0]['name']}">
+            <div class="actor-name">{actors[6]['name']}</div>
+            <div class="actor-role">{actors[6]['character']}</div>
+        </div>
+        """, unsafe_allow_html=True)
+        with col3:
+            st.markdown(f"""
+        <div class="actor-container">
+            <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[7]['profile_path']}" alt="{actors[0]['name']}">
+            <div class="actor-name">{actors[7]['name']}</div>
+            <div class="actor-role">{actors[7]['character']}</div>
+        </div>
+        """, unsafe_allow_html=True)
+        with col4:
+            st.markdown(f"""
+        <div class="actor-container">
+            <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[8]['profile_path']}" alt="{actors[0]['name']}">
+            <div class="actor-name">{actors[8]['name']}</div>
+            <div class="actor-role">{actors[8]['character']}</div>
+        </div>
+        """, unsafe_allow_html=True)
+        with col5:
+            st.markdown(f"""
+        <div class="actor-container">
+            <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[9]['profile_path']}" alt="{actors[0]['name']}">
+            <div class="actor-name">{actors[9]['name']}</div>
+            <div class="actor-role">{actors[9]['character']}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
 
 ############################################### PARTIE BASSE ###################################################
@@ -287,6 +329,6 @@ with col3:  # Les avis
     st.markdown("#### 💬 Critique")
     avis_list = get_avis(selected_movie_id)
     for avis in avis_list: 
-        st.markdown(f"🖊️ **Auteur :** {avis['author']}")
-        st.markdown(f"⭐ **Note :** {avis['rating']}")
-        st.text(f"💬 **Commentaire :** {avis['content']}")
+        st.markdown(f"🖊️ **Auteur :** {avis_list[0]['author']}") #je peux pas mettre 0 sinon ca sera uniquement pour le premier film de la liste ! 
+        st.markdown(f"⭐ **Note :** {avis_list[0]['rating']}")
+        st.text(f"💬 **Commentaire :** {avis_list[0]['content']}")
