@@ -183,25 +183,45 @@ with col3:  # Résumé et détails techniques
     actors = get_actors(movie_crew)
     col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
     with col1:
-        st.image(f"https://image.tmdb.org/t/p/original/{actors[0]['profile_path']}", width=image_width)
-        st.markdown(actors[0]['name'])
-        st.markdown(actors[0]['character'])
+        st.markdown(f"""
+    <div class="actor-container">
+        <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[0]['profile_path']}" alt="{actors[0]['name']}">
+        <div class="actor-name">{actors[0]['name']}</div>
+        <div class="actor-role">{actors[0]['character']}</div>
+    </div>
+    """, unsafe_allow_html=True)
     with col2:
-        st.image(f"https://image.tmdb.org/t/p/original/{actors[1]['profile_path']}", width=image_width)
-        st.markdown(actors[1]['name'])
-        st.markdown(actors[1]['character'])
+        st.markdown(f"""
+    <div class="actor-container">
+        <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[1]['profile_path']}" alt="{actors[0]['name']}">
+        <div class="actor-name">{actors[1]['name']}</div>
+        <div class="actor-role">{actors[1]['character']}</div>
+    </div>
+    """, unsafe_allow_html=True)
     with col3:
-        st.image(f"https://image.tmdb.org/t/p/original/{actors[2]['profile_path']}", width=image_width)
-        st.markdown(actors[2]['name'])
-        st.markdown(actors[2]['character'])
+        st.markdown(f"""
+    <div class="actor-container">
+        <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[2]['profile_path']}" alt="{actors[0]['name']}">
+        <div class="actor-name">{actors[2]['name']}</div>
+        <div class="actor-role">{actors[2]['character']}</div>
+    </div>
+    """, unsafe_allow_html=True)
     with col4:
-        st.image(f"https://image.tmdb.org/t/p/original/{actors[3]['profile_path']}", width=image_width)
-        st.markdown(actors[3]['name'])
-        st.markdown(actors[3]['character'])
+        st.markdown(f"""
+    <div class="actor-container">
+        <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[3]['profile_path']}" alt="{actors[0]['name']}">
+        <div class="actor-name">{actors[3]['name']}</div>
+        <div class="actor-role">{actors[3]['character']}</div>
+    </div>
+    """, unsafe_allow_html=True)
     with col5:
-        st.image(f"https://image.tmdb.org/t/p/original/{actors[4]['profile_path']}", width=image_width)
-        st.markdown(actors[4]['name'])
-        st.markdown(actors[4]['character'])
+        st.markdown(f"""
+    <div class="actor-container">
+        <img class="circular-image" src="https://image.tmdb.org/t/p/original/{actors[4]['profile_path']}" alt="{actors[0]['name']}">
+        <div class="actor-name">{actors[4]['name']}</div>
+        <div class="actor-role">{actors[4]['character']}</div>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 ############################################### PARTIE BASSE ###################################################
