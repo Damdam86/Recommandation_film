@@ -20,6 +20,22 @@ def get_movies():
     movies = [{"id": movie["id"], "title": movie["title"]} for movie in movie_data.get("results", [])]
     return movies
 
+def get_movie_ba(movie_id, api_key):
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}/videos?language=fr-FR&api_key={api_key}"
+    response = requests.get(url)
+    movie_ba = response.json()
+
+    # Vérifie si "results" contient des données
+    if "results" in movie_ba and len(movie_ba["results"]) > 0:
+        for ba in movie_ba["results"]:
+            # Recherche un trailer YouTube
+            if ba.get("site") == "YouTube" and ba.get("type") == "Trailer":
+                ba_url = f"https://www.youtube.com/watch?v={ba['key']}" # Retourne le lien du premier trailer trouvé
+                return ba_url
+    
+    # Si aucun trailer n'est trouvé, retourne un message par défaut
+    return None
+
 # Récupérer les détails d'un film
 def get_movie_details(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?language=fr-FR&api_key={api_key}"
@@ -207,7 +223,9 @@ col1, col2, col3 = st.columns([1, 1, 3])
 
 with col1:  # Bande annonce
     st.markdown("#### 🎥 Bande-Annonce")
-    st.video("https://www.youtube.com/watch?v=4DBzhNF3jbA")
+    ba_url = get_movie_ba(selected_movie_id, api_key)
+    st.video(ba_url)
+
 
 with col2:  #colonne de séparation
     ""
